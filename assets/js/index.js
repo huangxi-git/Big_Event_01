@@ -43,6 +43,7 @@ function renderAvatar(user) {
     } else {
         // 没有头像
         $('.layui-nav-img').hide();
+        // 拿到用户名第一个字符并转为大写
         let text = name[0].toUpperCase();
         $('.text-avatar').show().html(text);
     }
