@@ -19,7 +19,7 @@ $(function () {
             method: 'get',
             url: '/my/userinfo',
             success: (res) => {
-                // console.log(res);
+                console.log(res);
                 // 提交失败
                 if (res.status !== 0) {
                     return layer.msg(res.message);
