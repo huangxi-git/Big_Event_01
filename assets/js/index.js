@@ -31,7 +31,7 @@ function getUserInfo() {
         //     Authorization: localStorage.getItem("token") || "",
         // },
         success: (res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.status != 0) {
                 // 传入错误，提示
                 return layui.layer.msg(res.message);
@@ -52,7 +52,7 @@ function renderAvatar(user) {
     // 渲染头像
     if (user.user_pic !== null) {
         // 判断有头像
-        $('.layui-nav-img').show().attr('src', ser.user_pic);
+        $('.layui-nav-img').show().attr('src', user.user_pic);
         $('.text-avatar').hide();
     } else {
         // 没有头像

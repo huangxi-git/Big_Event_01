@@ -15,15 +15,16 @@ $.ajaxPrefilter(function (options) {
 
     // 身份验证
     if (options.url.indexOf('/my/') !== -1) {
-        options.header = {
+        options.headers = {
             Authorization: localStorage.getItem('token') || '',
         }
     };
 
 
+
     // 拦截所有响应，判断身份验证信息
-    params.complete = function (res) {
-        console.log(res.responseJSON);
+    options.complete = function (res) {
+        // console.log(res.responseJSON);
         let obj = res.responseJSON;
         if (obj.status == 1 && obj.messge == '身份验证失败！') {
             // 清空本地token
