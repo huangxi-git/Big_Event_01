@@ -13,11 +13,10 @@
 </head>
 
 <body>
-
     <div class="layui-card">
         <div class="layui-card-header">
             文章类别管理
-            <button type="button" class="layui-btn">添加类别</button>
+            <button type="button" class="layui-btn" id="btnadd">添加类别</button>
         </div>
         <div class="layui-card-body">
             <!-- 文章分类区域 -->
@@ -45,12 +44,70 @@
                     </tr> -->
                 </tbody>
             </table>
-
-
-
-
         </div>
     </div>
+
+    <!-- 模板引擎--添加弹窗 -->
+    <script type="text/html" id="dialog-add">
+        <form class="layui-form" action="" id="form-add">
+            <!-- 分类名称 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required lay-verify="required" placeholder="请输入分类名称"
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!-- 分类别名 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类别名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="alias" required lay-verify="required" placeholder="请输入分类别名"
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!-- 分类名称 -->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </script>
+
+
+    <!-- 模板引擎--编辑弹窗 -->
+    <script type="text/html" id="dialog-edit">
+            <form class="layui-form" action="" lay-filter='form-edit' id="form-edit">
+                <!-- 隐藏域保存 id  -->
+                <input type="hidden" name='Id'>
+                <!-- 分类名称 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类新的名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required lay-verify="required" placeholder="请输入新的分类名称"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 分类别名 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类新的别名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="alias" required lay-verify="required" placeholder="请输入新的分类别名"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 分类名称 -->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn " lay-submit lay-filter="formDemo" id='form-edit'>确认修改</button>
+                    </div>
+                </div>
+            </form>
+        </script>
+
+
 
     <!-- 模板引擎 -->
     <script type="text/html" id="tpl-art-cate">
@@ -59,14 +116,15 @@
         <td>{{ $value.name }}</td>
         <td>{{ $value.alias }}</td>
         <td>
-            <button type="button" class="layui-btn layui-btn-xs">操作</button>
-            <button type="button" class="layui-btn layui-btn-danger layui-btn-xs">删除</button>
+            <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id='{{ $value.Id }}'>编辑</button>
+            <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete"
+                data-id='{{ $value.Id }}'>删除</button>
         </td>
     </tr>
     {{ /each }}
     </script>
 
-    <!-- 引入 template -->
+    <!-- 引入 template js-->
     <script src="/assets/lib/template-web.js"></script>
     <!-- layui js -->
     <script src="/assets/lib/layui/layui.all.js"></script>
